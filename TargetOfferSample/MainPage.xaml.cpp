@@ -106,7 +106,7 @@ void MainPage::GetTargetedOffers(String^ msaToken)
 	httpClient->DefaultRequestHeaders->Authorization = ref new HttpCredentialsHeaderValue("Bearer", msaToken);
 
 	// Request for targeted offer.
-	Windows::Foundation::Uri^ localUri = ref new Windows::Foundation::Uri("https://manage.devcenter.microsoft.com/v2.0/my/storeoffers/user");
+	Windows::Foundation::Uri^ localUri = ref new Windows::Foundation::Uri("https://manage.devcenter.microsoft.com/v3.0/my/storeoffers/user");
 
 	create_task(httpClient->GetAsync(localUri)).then(
 		[this](HttpResponseMessage^ response)

@@ -23,12 +23,12 @@ Offer::Offer(JsonObject^ jsonObject)
 	/*
 	A sample offer object
 	{
-		"offers": ["AddOn1", "AddOn2"],
+		"offers": [{"productId": "AddOn1","storeId": "9PK8VD14FRCZ"}, {"productId": "AddOn2","storeId": "9PK8VD14FRCX"},],
 		"trackingId": "0d1b7268-60eb-4e7c-88bb-59edf12da95b"
 	}
 	*/
 
-	offers = ref new Vector<String^>();
+	offers = ref new Vector<OfferIds^>();
 	trackingId = jsonObject->GetNamedString(trackingIdKey, L"");
 
 	// Construct the offers array.
@@ -36,9 +36,9 @@ Offer::Offer(JsonObject^ jsonObject)
 	for (unsigned int i = 0; i < jsonOfferArray->Size; i++)
 	{
 		IJsonValue^ jsonValue = jsonOfferArray->GetAt(i);
-		if (jsonValue->ValueType == JsonValueType::String)
+		if (jsonValue->ValueType == JsonValueType::Object)
 		{
-			offers->Append(jsonValue->GetString());
+			offers->Append(ref new OfferIds(jsonValue->GetObject()));
 		}
 	}
 }
@@ -60,12 +60,12 @@ void Offer::TrackingId::set(String^ value)
 	trackingId = value;
 }
 
-IVector<String^>^ Offer::Offers::get()
+IVector<OfferIds^>^ Offer::Offers::get()
 {
 	return offers;
 }
 
-void Offer::Offers::set(IVector<String^>^ value)
+void Offer::Offers::set(IVector<OfferIds^>^ value)
 {
 	offers = value;
 }

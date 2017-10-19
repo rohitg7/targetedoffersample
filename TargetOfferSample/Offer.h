@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "OfferIds.h"
 
 namespace TargetOfferSample
 {
@@ -21,10 +22,10 @@ namespace TargetOfferSample
 		}
 
 		// It is an array of Add-On names. You can use these names to make Add-On purchase.
-		property Windows::Foundation::Collections::IVector<Platform::String^>^ Offers
+		property Windows::Foundation::Collections::IVector<OfferIds^>^ Offers
 		{
-			Windows::Foundation::Collections::IVector<Platform::String^>^ get();
-			void set(Windows::Foundation::Collections::IVector<Platform::String^>^ value);
+			Windows::Foundation::Collections::IVector<OfferIds^>^ get();
+			void set(Windows::Foundation::Collections::IVector<OfferIds^>^ value);
 		}
 
 	private:
@@ -32,6 +33,6 @@ namespace TargetOfferSample
 		static Platform::String^ offersKey;
 
 		Platform::String^ trackingId;
-		Windows::Foundation::Collections::IVector<Platform::String^>^ offers;
+		Windows::Foundation::Collections::IVector<OfferIds^>^ offers;
 	};
 }
